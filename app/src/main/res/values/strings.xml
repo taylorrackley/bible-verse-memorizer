@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Bible Verse Memorizer</string>
+    <string name="title_view_all_verses">View All Verses</string>
+    <string name="title_random_verse">Random Verse</string>
+    <string name="title_add_verse">Add Verse</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="view_all_verses">View All</string>
+    <string name="random_verse">Random</string>
+    <string name="add_verse">Add Verse</string>
+
+</resources>
