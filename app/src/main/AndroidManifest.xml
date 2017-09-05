@@ -19,11 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewVersesActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".AddVerseActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".RandomVerseActivity"
+        <activity
+            android:name=".ViewVersesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddVerseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RandomVerseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ViewSelectedBibleVerse"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
