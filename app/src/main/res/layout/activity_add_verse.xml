@@ -27,9 +27,62 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent" >
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:gravity="center_horizontal">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="50">
 
+                <EditText
+                    android:id="@+id/input_verse_reference"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/verse_reference" />
+
+            </android.support.design.widget.TextInputLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:gravity="center_horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="50">
+
+                <EditText
+                    android:id="@+id/input_verse_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/verse_content" />
+
+            </android.support.design.widget.TextInputLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_add_verse"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="@string/verse_submit" />
 
         </TableRow>
 

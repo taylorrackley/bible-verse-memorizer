@@ -6,6 +6,10 @@
     <string name="action_settings">Settings</string>
     <string name="string_placeholder">PLACEHOLDER</string>
 
+    <string name="verse_reference">Verse Reference</string>
+    <string name="verse_content">Verse Content</string>
+    <string name="verse_submit">Add</string>
+
     <string name="view_all_verses">View All</string>
     <string name="random_verse">Random</string>
     <string name="add_verse">Add Verse</string>

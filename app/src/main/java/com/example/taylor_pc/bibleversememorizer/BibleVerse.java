@@ -8,13 +8,28 @@ import java.util.UUID;
 
 public class BibleVerse {
 
-    public String reference;
-    public String verse;
+    private String verseReference;
+    private String verseContent;
 
     public BibleVerse(String ref, String ver) {
-        this.reference = ref;
-        this.verse = ver;
+        this.verseReference = ref;
+        this.verseContent = ver;
     }
 
+    public String getReference() {
+        return this.verseReference;
+    }
+
+    public String getContent() {
+        return this.verseContent;
+    }
+
+    public void setVerseReference(String ref) {
+        this.verseReference = ref;
+    }
+
+    public void setVerseContent(String ver) {
+        this.verseContent = ver;
+    }
 
 }

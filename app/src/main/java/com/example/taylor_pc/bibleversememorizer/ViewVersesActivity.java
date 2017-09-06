@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class ViewVersesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_verses);
+        setContentView(R. layout.activity_view_verses);
 
         BibleVerse[] verses = getVerses();
 
@@ -24,7 +26,7 @@ public class ViewVersesActivity extends AppCompatActivity {
         for(int x = 0; x < verses.length; x++) {
             verseButtons[x] = new Button(this);
             verseButtons[x].setId(x);
-            verseButtons[x].setText(verses[x].reference);
+            verseButtons[x].setText(verses[x].getReference());
             verseList.addView(verseButtons[x]);
 
             verseButtons[x].setOnClickListener(new View.OnClickListener() {
@@ -39,12 +41,15 @@ public class ViewVersesActivity extends AppCompatActivity {
 
     public BibleVerse[] getVerses() {
 
-        BibleVerse verse1 = new BibleVerse("Deuteronomy 26:5", "You shall answer and say before the Lord your God, ‘My father was a wandering Aramean, and he went down to Egypt and sojourned there, few in number; but there he became a great, mighty and populous nation.");
-        BibleVerse verse2 = new BibleVerse("2 Timothy 3:16-17", "All Scripture is inspired by God and profitable for teaching, for reproof, for correction, for training in righteousness; so that the man of God may be adequate, equipped for every good work");
+        BibleVerseHandler bibleVerseHandler = new BibleVerseHandler(this);
+        BibleVerse[] bibleVerses = bibleVerseHandler.getAllBibleVerses();
 
-        BibleVerse[] verses = new BibleVerse[] {verse1, verse2};
+        //BibleVerse verse1 = new BibleVerse("Deuteronomy 26:5", "You shall answer and say before the Lord your God, ‘My father was a wandering Aramean, and he went down to Egypt and sojourned there, few in number; but there he became a great, mighty and populous nation.");
+        //BibleVerse verse2 = new BibleVerse("2 Timothy 3:16-17", "All Scripture is inspired by God and profitable for teaching, for reproof, for correction, for training in righteousness; so that the man of God may be adequate, equipped for every good work");
 
-        return verses;
+        //BibleVerse[] verses = new BibleVerse[] {verse1, verse2};
+
+        return bibleVerses;
 
     }
 
@@ -54,8 +59,8 @@ public class ViewVersesActivity extends AppCompatActivity {
         BibleVerse selectedVerse = getVerses()[btnId];
 
         Intent intent = new Intent(this, ViewSelectedBibleVerse.class);
-        intent.putExtra("verse_reference", selectedVerse.reference);
-        intent.putExtra("verse_content", selectedVerse.verse);
+        intent.putExtra("verse_reference", selectedVerse.getReference());
+        intent.putExtra("verse_content", selectedVerse.getContent());
         startActivity(intent);
 
 //        Toast.makeText(this, selectedVerse.verse,
