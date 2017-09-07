@@ -1,6 +1,7 @@
 package com.example.taylor_pc.bibleversememorizer;
 
 import android.os.CountDownTimer;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,18 +18,20 @@ public class AddVerseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_verse);
 
-        final Button btnAddVerse = (Button )findViewById(R.id.btn_add_verse);
+        Button btnAddVerse = (Button )findViewById(R.id.btn_add_verse);
         btnAddVerse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
+                BibleVerseHandler bibleVerseHandler = new BibleVerseHandler(AddVerseActivity.this);
 
                 EditText inputVerseReference = (EditText) findViewById(R.id.input_verse_reference);
                 EditText inputVerseContent = (EditText) findViewById(R.id.input_verse_content);
 
                 BibleVerse newVerse = new BibleVerse(
                         inputVerseReference.getText().toString(),
-                        inputVerseContent.getText().toString());
+                        inputVerseContent.getText().toString(),
+                        bibleVerseHandler.getNewID());
 
-                final BibleVerseHandler bibleVerseHandler = new BibleVerseHandler(AddVerseActivity.this);
                 bibleVerseHandler.addBibleVerse(newVerse);
 
                 Toast.makeText(AddVerseActivity.this, "Successfully added new Bible verse.",
@@ -47,6 +50,13 @@ public class AddVerseActivity extends AppCompatActivity {
 
                 }.start();
 
+            }
+        });
+
+        FloatingActionButton btnReturn = (FloatingActionButton) findViewById(R.id.btn_return);
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
             }
         });
 

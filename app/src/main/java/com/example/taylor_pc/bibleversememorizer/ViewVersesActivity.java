@@ -1,12 +1,14 @@
 package com.example.taylor_pc.bibleversememorizer;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -37,6 +39,21 @@ public class ViewVersesActivity extends AppCompatActivity {
 
         }
 
+        if(verses.length == 0) {
+            TextView noVersestext = new TextView(this);
+            noVersestext.setText("No Verses Have Been Added");
+            noVersestext.setPadding(50, 0, 0, 0);
+            noVersestext.setTextSize(20);
+            verseList.addView(noVersestext);
+        }
+
+        FloatingActionButton btnReturn = (FloatingActionButton) findViewById(R.id.btn_return);
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     public BibleVerse[] getVerses() {
@@ -61,6 +78,7 @@ public class ViewVersesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewSelectedBibleVerse.class);
         intent.putExtra("verse_reference", selectedVerse.getReference());
         intent.putExtra("verse_content", selectedVerse.getContent());
+        intent.putExtra("verse_id", selectedVerse.getID());
         startActivity(intent);
 
 //        Toast.makeText(this, selectedVerse.verse,

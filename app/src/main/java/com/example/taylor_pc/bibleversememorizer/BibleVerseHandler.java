@@ -53,6 +53,7 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID, bibleVerse.getID());
         values.put(KEY_VERSE_REFERENCE, bibleVerse.getReference());
         values.put(KEY_VERSE_CONTENT, bibleVerse.getContent());
 
@@ -75,8 +76,7 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                BibleVerse verse = new BibleVerse(cursor.getString(1), cursor.getString(2));
-                //verse.setID(Integer.parseInt(cursor.getString(0)));
+                BibleVerse verse = new BibleVerse(cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(0)));
 
                 bibleVerseList.add(verse);
 
@@ -86,7 +86,33 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
         BibleVerse[] bibleVerseArray = new BibleVerse[bibleVerseList.size()];
         bibleVerseArray = bibleVerseList.toArray(bibleVerseArray);
 
+        db.close();
+
         return bibleVerseArray;
+    }
+
+    public void deleteBibleVerse(BibleVerse bibleVerse) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_BIBLE_VERSES, KEY_ID + " = ?",
+                new String[] { String.valueOf(bibleVerse.getID()) });
+        db.close();
+    }
+
+    public int getNewID() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT " + KEY_ID + " FROM " + TABLE_BIBLE_VERSES + " ORDER BY " + KEY_ID + " DESC LIMIT 1";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor != null && cursor.moveToFirst()) {
+            int newId = Integer.parseInt(cursor.getString(0))+1;
+            db.close();
+            return newId;
+        } else {
+            db.close();
+            return 20;
+        }
+
     }
 
 }

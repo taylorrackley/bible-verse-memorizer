@@ -47,4 +47,55 @@
 
     </TableLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorToolbar"
+            app:fabSize="normal"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_edit_verse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+
+            android:clickable="true"
+            app:backgroundTint="@color/colorToolbar"
+            app:fabSize="normal"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_delete_verse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorToolbar"
+            app:fabSize="normal"
+            app:srcCompat="@android:drawable/ic_delete" />
+
+    </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>
