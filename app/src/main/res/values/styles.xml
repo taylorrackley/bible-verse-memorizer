@@ -24,6 +24,17 @@
         <item name="android:background">#fff</item>
     </style>
 
+    <style name="RandomVerseText">
+        <item name="android:textSize">20dp</item>
+        <item name="android:text">@string/string_placeholder</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

@@ -34,7 +34,7 @@ public class AddVerseActivity extends AppCompatActivity {
 
                 bibleVerseHandler.addBibleVerse(newVerse);
 
-                Toast.makeText(AddVerseActivity.this, newVerse.getID()+" Successfully added new Bible verse.",
+                Toast.makeText(AddVerseActivity.this, "Successfully added new Bible verse.",
                 Toast.LENGTH_LONG).show();
 
                 new CountDownTimer(500, 1000) {
