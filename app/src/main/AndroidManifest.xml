@@ -28,7 +28,11 @@
         <activity
             android:name=".RandomVerseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ViewSelectedBibleVerse"
+        <activity
+            android:name=".ViewSelectedBibleVerse"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditBibleVerse"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

@@ -20,14 +20,51 @@ public class ViewVersesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R. layout.activity_view_verses);
 
+        loadActivity();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK) {
+            loadActivity();
+        }
+    }
+
+    public BibleVerse[] getVerses() {
+
+        BibleVerseHandler bibleVerseHandler = new BibleVerseHandler(this);
+        BibleVerse[] bibleVerses = bibleVerseHandler.getAllBibleVerses();
+
+        return bibleVerses;
+
+    }
+
+    public void verseSelected(View view) {
+
+        int btnId = view.getId();
+
+        Intent intent = new Intent(this, ViewSelectedBibleVerse.class);
+        Bundle extras = new Bundle();
+        extras.putInt("verse_id",btnId);
+
+        intent.putExtras(extras);
+        startActivityForResult(intent, 1);
+
+    }
+
+    public void loadActivity() {
+
         BibleVerse[] verses = getVerses();
 
         Button[] verseButtons = new Button[verses.length];
         LinearLayout verseList = (LinearLayout) findViewById(R.id.verse_list);
+        verseList.removeAllViews();
 
         for(int x = 0; x < verses.length; x++) {
             verseButtons[x] = new Button(this);
-            verseButtons[x].setId(x);
+            verseButtons[x].setId(verses[x].getID());
             verseButtons[x].setText(verses[x].getReference());
             verseList.addView(verseButtons[x]);
 
@@ -53,36 +90,6 @@ public class ViewVersesActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-    }
-
-    public BibleVerse[] getVerses() {
-
-        BibleVerseHandler bibleVerseHandler = new BibleVerseHandler(this);
-        BibleVerse[] bibleVerses = bibleVerseHandler.getAllBibleVerses();
-
-        //BibleVerse verse1 = new BibleVerse("Deuteronomy 26:5", "You shall answer and say before the Lord your God, ‘My father was a wandering Aramean, and he went down to Egypt and sojourned there, few in number; but there he became a great, mighty and populous nation.");
-        //BibleVerse verse2 = new BibleVerse("2 Timothy 3:16-17", "All Scripture is inspired by God and profitable for teaching, for reproof, for correction, for training in righteousness; so that the man of God may be adequate, equipped for every good work");
-
-        //BibleVerse[] verses = new BibleVerse[] {verse1, verse2};
-
-        return bibleVerses;
-
-    }
-
-    public void verseSelected(View view) {
-
-        int btnId = view.getId();
-        BibleVerse selectedVerse = getVerses()[btnId];
-
-        Intent intent = new Intent(this, ViewSelectedBibleVerse.class);
-        intent.putExtra("verse_reference", selectedVerse.getReference());
-        intent.putExtra("verse_content", selectedVerse.getContent());
-        intent.putExtra("verse_id", selectedVerse.getID());
-        startActivity(intent);
-
-//        Toast.makeText(this, selectedVerse.verse,
-//                Toast.LENGTH_LONG).show();
 
     }
 

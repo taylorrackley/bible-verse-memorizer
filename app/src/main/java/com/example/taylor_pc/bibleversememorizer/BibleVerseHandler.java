@@ -64,6 +64,20 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
 
     }
 
+    public void updateBibleVerse(BibleVerse bibleVerse) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_VERSE_REFERENCE, bibleVerse.getReference());
+        values.put(KEY_VERSE_CONTENT, bibleVerse.getContent());
+        values.put(KEY_ID, bibleVerse.getID());
+
+        db.update(TABLE_BIBLE_VERSES, values, KEY_ID + " = ?", new String[] { String.valueOf(bibleVerse.getID()) });
+        db.close();
+
+    }
+
 
     public BibleVerse[] getAllBibleVerses() {
         List<BibleVerse> bibleVerseList = new ArrayList<BibleVerse>();
@@ -91,10 +105,31 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
         return bibleVerseArray;
     }
 
-    public void deleteBibleVerse(BibleVerse bibleVerse) {
+    public BibleVerse getBibleVerse(int id) {
+
+        BibleVerse verse;
+
+        String selectQuery = "SELECT * FROM " + TABLE_BIBLE_VERSES + " WHERE " + KEY_ID + " = ? LIMIT 1";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) });
+
+        if (cursor.moveToFirst()) {
+            do {
+                verse = new BibleVerse(cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(0)));
+
+            } while (cursor.moveToNext());
+        } else {
+            verse = new BibleVerse("NULL", "NULL", 0);
+        }
+
+        return verse;
+
+    }
+
+    public void deleteBibleVerse(int verseID) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_BIBLE_VERSES, KEY_ID + " = ?",
-                new String[] { String.valueOf(bibleVerse.getID()) });
+                new String[] { String.valueOf(verseID) });
         db.close();
     }
 

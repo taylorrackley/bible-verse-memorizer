@@ -21,9 +21,27 @@ public class ViewSelectedBibleVerse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_selected_bible_verse);
 
-        Intent verseData = getIntent();
-        final String verseReference = verseData.getStringExtra("verse_reference");
-        final String verseContent = verseData.getStringExtra("verse_content");
+        loadActivity();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK) {
+            loadActivity();
+        }
+    }
+
+    public void loadActivity() {
+
+        final int verseID = getIntent().getIntExtra("verse_id", 1);
+
+        final BibleVerseHandler bibleVerseHandler = new BibleVerseHandler(this);
+        BibleVerse selectedVerse = bibleVerseHandler.getBibleVerse(verseID);
+
+        final String verseReference = selectedVerse.getReference();
+        final String verseContent = selectedVerse.getContent();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(verseReference);
@@ -31,23 +49,32 @@ public class ViewSelectedBibleVerse extends AppCompatActivity {
         TextView verseDisplay = (TextView) findViewById(R.id.verse_content);
         verseDisplay.setText(verseContent);
 
-        final FloatingActionButton btnReturn = (FloatingActionButton) findViewById(R.id.btn_return);
+        // Return Button
+        FloatingActionButton btnReturn = (FloatingActionButton) findViewById(R.id.btn_return);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                setResult(RESULT_OK);
                 finish();
             }
         });
 
-        final FloatingActionButton btnEditVerse = (FloatingActionButton) findViewById(R.id.btn_edit_verse);
+        // Edit Button
+        FloatingActionButton btnEditVerse = (FloatingActionButton) findViewById(R.id.btn_edit_verse);
         btnEditVerse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                Intent intent = new Intent(ViewSelectedBibleVerse.this, EditBibleVerse.class);
+                Bundle extras = new Bundle();
+                extras.putInt("verse_id", verseID);
 
+                intent.putExtras(extras);
+                startActivityForResult(intent, 1);
 
             }
         });
 
-        final FloatingActionButton btnDeleteVerse = (FloatingActionButton) findViewById(R.id.btn_delete_verse);
+        // Delete Button
+        FloatingActionButton btnDeleteVerse = (FloatingActionButton) findViewById(R.id.btn_delete_verse);
         btnDeleteVerse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -58,6 +85,8 @@ public class ViewSelectedBibleVerse extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int whichButton) {
+
+                                bibleVerseHandler.deleteBibleVerse(verseID);
 
                                 Toast.makeText(ViewSelectedBibleVerse.this, verseReference+" deleted", Toast.LENGTH_LONG).show();
 
@@ -70,6 +99,7 @@ public class ViewSelectedBibleVerse extends AppCompatActivity {
                                     @Override
                                     public void onFinish() {
 
+                                        setResult(RESULT_OK);
                                         finish();
 
                                     }
@@ -83,4 +113,5 @@ public class ViewSelectedBibleVerse extends AppCompatActivity {
         });
 
     }
+
 }
