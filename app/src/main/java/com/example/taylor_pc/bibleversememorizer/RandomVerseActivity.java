@@ -45,7 +45,6 @@ public class RandomVerseActivity extends AppCompatActivity {
             }
         });
 
-        // Return Button
         FloatingActionButton btnReturn = (FloatingActionButton) findViewById(R.id.btn_return);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -73,7 +72,7 @@ public class RandomVerseActivity extends AppCompatActivity {
         verseReference.setText(randomBibleVerse.getReference());
         verseContent.setText(randomBibleVerse.getContent());
         verseContent.setVisibility(View.INVISIBLE);
-        btnSubmit.setText(randInt+" SHOW");
+        btnSubmit.setText("SHOW");
 
     }
 

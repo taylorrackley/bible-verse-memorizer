@@ -30,16 +30,4 @@ public class BibleVerse {
         return this.verseContent;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public void setVerseReference(String ref) {
-        this.verseReference = ref;
-    }
-
-    public void setVerseContent(String ver) {
-        this.verseContent = ver;
-    }
-
 }

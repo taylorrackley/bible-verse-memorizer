@@ -40,7 +40,6 @@ public class EditBibleVerse extends AppCompatActivity {
             }
         });
 
-        // Return Button
         FloatingActionButton btnReturn = (FloatingActionButton) findViewById(R.id.btn_return);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

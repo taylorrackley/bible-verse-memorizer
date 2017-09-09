@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         View contentMain = findViewById(R.id.content_main_view);
 
-        final Button btnViewVerses = contentMain.findViewById(R.id.view_all_verses);
+        Button btnViewVerses = contentMain.findViewById(R.id.view_all_verses);
         btnViewVerses.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button btnAddVerse = contentMain.findViewById(R.id.add_verse);
+        Button btnAddVerse = contentMain.findViewById(R.id.add_verse);
         btnAddVerse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button btnRandomVerse = contentMain.findViewById(R.id.random_verse);
+        Button btnRandomVerse = contentMain.findViewById(R.id.random_verse);
         btnRandomVerse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }

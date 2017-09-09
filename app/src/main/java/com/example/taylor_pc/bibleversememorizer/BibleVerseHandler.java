@@ -26,7 +26,6 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
 
     public BibleVerseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        //3rd argument to be passed is CursorFactory instance
     }
 
     // Creating Tables
@@ -41,10 +40,7 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BIBLE_VERSES);
-
-        // Create tables again
         onCreate(db);
     }
 
@@ -58,8 +54,6 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
         values.put(KEY_VERSE_CONTENT, bibleVerse.getContent());
 
         db.insert(TABLE_BIBLE_VERSES, null, values);
-        //2nd argument is String containing nullColumnHack
-
         db.close();
 
     }
@@ -87,7 +81,6 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 BibleVerse verse = new BibleVerse(cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(0)));
@@ -128,8 +121,7 @@ public class BibleVerseHandler extends SQLiteOpenHelper {
 
     public void deleteBibleVerse(int verseID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_BIBLE_VERSES, KEY_ID + " = ?",
-                new String[] { String.valueOf(verseID) });
+        db.delete(TABLE_BIBLE_VERSES, KEY_ID + " = ?", new String[] { String.valueOf(verseID) });
         db.close();
     }
 
